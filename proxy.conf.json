@@ -1,0 +1,11 @@
+
+{
+  "/posts": {
+    "target": "https://api.staging.pargo.co.za/",
+    "secure": true,
+    "pathRewrite": {
+      "^/posts": ""
+    },
+    "changeOrigin": true
+  }
+}

@@ -1,0 +1,35 @@
+<div class="heading">
+  <h1>DEEZER</h1>
+</div>
+
+<div class="container" *ngFor="let val of this.artistData">
+  <div class="items" >
+    <div class="item-list" >
+      <div class="item-cover">
+        <img [src]="val.picture_xl" alt="">
+      </div>
+      <div class="item-details">
+        <h6>{{val.name}}</h6>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            Album {{val.title}}
+          </li>
+          <li class="list-group-item">
+            Fans - {{val.nb_fan}}
+          </li>
+          <li class="list-group-item">
+            Album No - {{ val.nb_album}}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="items-track">
+    <h5>Track list</h5>
+    <ul class="list-group list-group-flush" *ngFor="let val of this.albums">
+      <li class="list-group-item" *ngFor="let item of val"><i class="bi bi-collection-play" style="padding-right: 10px"></i> {{ item.title }} - Ranking - {{ item.rank }}</li>
+    </ul>
+  </div>
+
+</div>

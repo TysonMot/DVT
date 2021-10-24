@@ -1,0 +1,73 @@
+
+<div class="heading">
+  <h1>DEEZER</h1>
+</div>
+
+<div class="container">
+  <div class="card mt-5">
+    <div class="search">
+      <input [(ngModel)]="searchId" (ngModelChange)="search()" type="text" class="form-control" placeholder="Search by artist , song or album name">
+    </div>
+  </div>
+  <div class="card mt-xxl-5" >
+     <div *ngIf="this.artists.length > 0 && this.searchId != ''; else renderChars">
+       <div *ngIf="this.artists[0].length > 1 ; else renderNoData">
+         <div class="items" *ngFor="let res of this.artists; let i = index">
+           <div class="item-list" *ngFor="let val of res; let i = index">
+             <div class="item-cover">
+               <img [src]="val.album.cover_xl" alt="">
+             </div>
+             <div class="item-details">
+               <h6>{{val.artist.name}}</h6>
+               <ul class="list-group list-group-flush">
+                 <li class="list-group-item">
+                   Album {{val.album.title}}
+                 </li>
+                 <li class="list-group-item">
+                   Ranking - {{val.rank}}
+                 </li>
+                 <li class="list-group-item">
+                   Title - {{val.title}}
+                 </li>
+               </ul>
+               <button [routerLink]="['/','about', val.artist.id]"><i class="bi bi-arrow-right-square-fill"></i></button>
+             </div>
+           </div>
+         </div>
+       </div>
+       <ng-template #renderNoData>
+         <div class="card text-center">
+           <div class="card-body">
+             <h5 class="card-title">No results</h5>
+             <p class="card-text">Unfortunately we couldn't find any matching results for your search input.</p>
+           </div>
+         </div>
+       </ng-template>
+     </div>
+    <ng-template #renderChars>
+      <div class="items" *ngFor="let res of this.charts; let i = index">
+        <div class="item-list" *ngFor="let val of res; let i = index">
+          <div class="item-cover">
+            <img [src]="val.album.cover_xl" alt="">
+          </div>
+          <div class="item-details">
+            <h6>{{val.artist.name}}</h6>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                Album {{val.album.title}}
+              </li>
+              <li class="list-group-item">
+                Ranking - Position {{val.position}}
+              </li>
+              <li class="list-group-item">
+                Title - {{val.title}}
+              </li>
+            </ul>
+            <button [routerLink]="['/','about', val.artist.id]"><i class="bi bi-arrow-right-square-fill"></i></button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
